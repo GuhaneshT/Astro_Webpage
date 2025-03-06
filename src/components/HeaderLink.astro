@@ -13,12 +13,43 @@ const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
 	<slot />
 </a>
 <style>
-	a {
-		display: inline-block;
-		text-decoration: none;
-	}
-	a.active {
-		font-weight: bolder;
-		text-decoration: underline;
-	}
+/* Default link style */
+a {
+    position: relative;
+    color: #9b59b6; /* Purple */
+    text-decoration: none;
+    font-size: 16px;
+    transition: font-size 0.3s ease-in-out;
+}
+
+/* Add [] before inactive links */
+a::before {
+    content: "[";
+    color: #9b59b6;
+    margin-right: 4px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+a::after {
+    content: "]";
+    color: #9b59b6;
+    margin-left: 4px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* When link is active, remove [] and increase font size */
+a:hover,
+a:active {
+    font-size: 20px; /* Increase size on active/hover */
+}
+
+a:hover::before,
+a:hover::after,
+ a:active::before,
+a:active::after {
+    opacity: 0;
+}
+
 </style>
+
+
